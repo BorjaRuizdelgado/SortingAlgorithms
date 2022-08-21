@@ -1,6 +1,10 @@
 ﻿
 namespace SortingAlgorithms.src
 {
+    //radix sort is a non-comparative sorting algorithm.
+    //It avoids comparison by creating and distributing elements into buckets according to their radix.
+    //For elements with more than one significant digit, this bucketing process is repeated for each digit,
+    //while preserving the ordering of the prior step, until all digits have been considered.
     public class RadixSort : SortingAlgorithm
     {
         public void Sort(int[] array)
