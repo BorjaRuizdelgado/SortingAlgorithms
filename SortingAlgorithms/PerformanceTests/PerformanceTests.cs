@@ -33,12 +33,12 @@ namespace SortingAlgorithms.PerformanceTests
         private static double LoadTest(SortingAlgorithm? algorithm)
         {
             double time = 0;
-            int iterations = 50;
+            int iterations = 100;
             for (int i = 0; i < iterations; ++i)
             {
 
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                algorithm?.Sort(Utils.GetRandomArray(100000));
+                algorithm?.Sort(Utils.GetRandomArray(10000));
                 watch.Stop();
                 time += watch.ElapsedMilliseconds;
 
