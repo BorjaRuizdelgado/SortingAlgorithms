@@ -35,8 +35,8 @@ namespace SortingAlgorithms.src
                     count[j] = 0;
 
                  
-                for (int i = 0; i < a.Length; i++)
-                    count[(a[i] >> shift) & mask]++;
+                for (int i = 0; i < array.Length; i++)
+                    count[(array[i] >> shift) & mask]++;
 
                 pref[0] = 0;
                 for (int i = 1; i < count.Length; i++)

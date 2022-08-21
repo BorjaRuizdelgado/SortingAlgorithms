@@ -4,8 +4,6 @@ namespace SortingAlgorithms.src
 {
     public class PerformanceTests
     {
-        
-
         public void GetAlgrithmsPerformance()
         {
             var type = typeof(SortingAlgorithm);
@@ -17,6 +15,7 @@ namespace SortingAlgorithms.src
 
             Parallel.ForEach(types, t =>
             {
+                Console.WriteLine($"Now sorting with: {t.Name}.");
 
                 if (t.FullName != typeof(SortingAlgorithm).FullName)
                 {
@@ -24,17 +23,16 @@ namespace SortingAlgorithms.src
                     results.Add(new KeyValuePair<string, double>(t.Name, LoadTest(algorithm)));
 
                 }
+                Console.WriteLine($"Ended sorting with: {t.Name}.");
             });
 
             Print(results);
-
-
         }
 
         private static double LoadTest(SortingAlgorithm? algorithm)
         {
             double time = 0;
-            int iterations = 40000;
+            int iterations = 1000;
             for(int i = 0; i < iterations; ++i)
             {
 
@@ -45,13 +43,10 @@ namespace SortingAlgorithms.src
                 
             }
 
-            return time/iterations;
-           
+            return time / iterations;
         }
         public static void Print(List<KeyValuePair<string, double>> list)
         {
-
-            // get the max length of all the words so we can align
             var max = list.Max(x => x.Value);
 
             foreach (var item in list)

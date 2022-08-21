@@ -19,60 +19,40 @@ namespace SortingAlgorithms.src
                 left = right = null;
             }
         }
-        public BinaryTreeSort()
-        {
-            root = null;
-        }
+
+        Node root;
+
+        public BinaryTreeSort() => root = null;
 
         public void Sort(int[] array)
         {
-            Treeins(array);
+            PopulateBinaryTreeWithArray(array);
             List<int> list = new List<int>();
             InorderRec(root, list);
             Array.Copy(list.ToArray(), array, array.Length);
         }
-
-        
-
-        // Root of BST
-        Node root;
-
-        // Constructor
-        
-
-        // This method mainly
-        // calls insertRec()
+     
         void Insert(int key)
         {
-            root = InsertRec(root, key);
+            root = InsertNodeRecursively(root, key);
         }
 
-        /* A recursive function to
-          insert a new key in BST */
-        Node InsertRec(Node root, int key)
+        Node InsertNodeRecursively(Node root, int key)
         {
 
-            /* If the tree is empty,
-                return a new node */
             if (root == null)
             {
                 root = new Node(key);
                 return root;
             }
-
-            /* Otherwise, recur
-                down the tree */
             if (key < root.key)
-                root.left = InsertRec(root.left, key);
+                root.left = InsertNodeRecursively(root.left, key);
             else if (key > root.key)
-                root.right = InsertRec(root.right, key);
+                root.right = InsertNodeRecursively(root.right, key);
 
-            /* return the root */
             return root;
         }
 
-        // A function to do
-        // inorder traversal of BST
         void InorderRec(Node root, List<int> list)
         {
             if (root != null)
@@ -83,13 +63,13 @@ namespace SortingAlgorithms.src
 
             }
         }
-        void Treeins(int[] arr)
+
+        void PopulateBinaryTreeWithArray(int[] arr)
         {
             for (int i = 0; i < arr.Length; i++)
             {
                 Insert(arr[i]);
             }
-
         }
     }
 }
