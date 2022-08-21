@@ -1,6 +1,7 @@
 ﻿using System.Data;
+using SortingAlgorithms.src;
 
-namespace SortingAlgorithms.src
+namespace SortingAlgorithms.PerformanceTests
 {
     public class PerformanceTests
     {
@@ -26,26 +27,26 @@ namespace SortingAlgorithms.src
                 Console.WriteLine($"Ended sorting with: {t.Name}.");
             });
 
-            Print(results);
+            PlotResults(results);
         }
 
         private static double LoadTest(SortingAlgorithm? algorithm)
         {
             double time = 0;
-            int iterations = 1000;
-            for(int i = 0; i < iterations; ++i)
+            int iterations = 50;
+            for (int i = 0; i < iterations; ++i)
             {
 
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-                algorithm?.Sort(Utils.GetRandomArray(1000));
+                algorithm?.Sort(Utils.GetRandomArray(100000));
                 watch.Stop();
                 time += watch.ElapsedMilliseconds;
-                
+
             }
 
             return time / iterations;
         }
-        public static void Print(List<KeyValuePair<string, double>> list)
+        public static void PlotResults(List<KeyValuePair<string, double>> list)
         {
             var max = list.Max(x => x.Value);
 
